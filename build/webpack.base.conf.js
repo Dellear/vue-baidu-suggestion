@@ -33,6 +33,11 @@ module.exports = {
         options: vueLoaderConfig
       },
       {
+        test: /\.json$/,
+        loader: 'json-loader',
+//      options: vueLoaderConfig
+      },
+      {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test')]
