@@ -2,21 +2,14 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import App from './App';
-import Vuex from 'VueX';
+import VueResource from 'vue-resource';
+import './css/index.css';
+
+Vue.use(VueResource);
 
 Vue.config.productionTip = false
 
-Vue.use(Vuex)
 
-const store =window.store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment: state => state.count++,
-    decrement: state => state.count--
-  }
-});
 
 /* eslint-disable no-new */
 new Vue({

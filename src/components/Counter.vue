@@ -1,12 +1,12 @@
 <template>
-  <div style="color:red;">{{ count }}</div>
+  <div style="color:red;">{{ counter }}</div>
 </template>
 
 <script>
   export default {
     computed: {
-      count () {
-        return store.state.count + 55;
+      counter () {
+        return this.$store.state.counter + 55;
       }
     }
   }
