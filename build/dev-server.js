@@ -1,4 +1,4 @@
-require('./check-versions')()
+require('./check-versions')();
 
 var config = require('../config')
 if (!process.env.NODE_ENV) {
@@ -77,7 +77,14 @@ devMiddleware.waitUntilValid(() => {
   console.log('> Listening at ' + uri + '\n')
   // when env is testing, don't need open it
   if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
-    opn(uri,{ app: 'chrome' })
+    if (process.platform === 'linux') {
+      opn(uri,{ app: 'google-chrome' })
+    }else if (process.platform === 'win32') {
+      opn(uri,{ app: 'chrome' })
+    }else {
+      opn(uri)
+    }
+    
   }
 _resolve()
 })
