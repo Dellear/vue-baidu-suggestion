@@ -13,31 +13,29 @@
 
 <script>
     export default {
-        data() {
-            return {
-                myData: [],
-                searchVal: "",
-                selected: -1,
-                showList: false
-            };
-        },
+        data: () => ({
+            myData: [],
+            searchVal: "",
+            selected: -1,
+            showList: false
+        }),
         methods: {
-            clickItem: function(value) {
+            clickItem(value) {
                 this.searchVal = value.oldValue;
                 this.showList = false;
             },
-            get: function($event) {
+            get($event) {
                 //百度版
                 if ([13, 37, 38, 39, 40].indexOf($event.which) > -1) {
                     //排除上下左右和enter
                     return;
                 }
-                var vm = this;
+                const vm = this;
                 vm.showList = true;
                 vm.selected = -1;
                 window.baidu = {
-                    sug: function(data) {
-                        var arr = data.s;
+                    sug(data) {
+                        const arr = data.s;
                         arr.forEach(function(val, i) {
                             if (val.indexOf(vm.searchVal) > -1) {
                                 arr[i] = {
@@ -78,7 +76,7 @@
                         function() {}
                     );
             },
-            downSelect: function() {
+            downSelect() {
                 if (!this.myData.length || !this.showList) {
                     return;
                 }
@@ -88,7 +86,7 @@
                     this.selected = 0;
                 }
             },
-            upSelect: function() {
+            upSelect() {
                 if (!this.myData.length || !this.showList) {
                     return;
                 }
@@ -98,17 +96,18 @@
                     this.selected = this.myData.length - 1;
                 }
             },
-            enterEvent: function() {
+            enterEvent() {
                 if (this.showList && this.selected !== -1) {
                     this.searchVal = this.myData[this.selected].oldValue;
                     this.selected = -1;
                     this.showList = false;
+                    this.openLink();
                 } else if (!this.showList) {
                     this.openLink();
                 }
             },
-            openLink: function() {
-                if (this.searchVal === "") {
+            openLink() {
+                if (!this.searchVal) {
                     return;
                 }
                 window.open("https://www.baidu.com/s?wd=" + this.searchVal);
