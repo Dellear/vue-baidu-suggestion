@@ -3,7 +3,7 @@
 > 使用vue实现的百度首页搜索联想功能
 
 ## Demo
-
+[https://dellear.github.io/vue-baidu-suggestion/](https://dellear.github.io/vue-baidu-suggestion/)
 
 ``` bash
 # install dependencies

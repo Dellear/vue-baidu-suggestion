@@ -1,9 +1,8 @@
 {
-  "name": "my-first-vue-project",
+  "name": "vue-baidu-suggestion",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "vue-baidu-suggestion",
   "author": "wang <358009775@qq.com>",
-  "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
