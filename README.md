@@ -1,5 +1,9 @@
-# vue-test
-> vue-test
+# vue-baidu-suggestion
+> vue-baidu-suggestion
+> 使用vue实现的百度首页搜索联想功能
+
+## Demo
+
 
 ``` bash
 # install dependencies
