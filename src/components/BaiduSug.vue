@@ -12,6 +12,7 @@
 </template>
 
 <script>
+    import $ from 'jquery';
     export default {
         data: () => ({
             myData: [],
@@ -33,9 +34,17 @@
                 const vm = this;
                 vm.showList = true;
                 vm.selected = -1;
-                window.baidu = {
-                    sug(data) {
-                        const arr = data.s;
+
+                $.ajax({
+                    dataType: "jsonp",
+                    async: true,
+                    url: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+                    data: {
+                        wd: vm.searchVal
+                    },
+                    jsonp: "cb",
+                    success: function(res) {
+                        const arr = res.s;
                         arr.forEach(function(val, i) {
                             if (val.indexOf(vm.searchVal) > -1) {
                                 arr[i] = {
@@ -55,26 +64,9 @@
                             }
                         });
 
-                        vm.myData = data.s;
-                    }
-                };
-
-                vm.$http
-                    .jsonp(
-                        "http://suggestion.baidu.com/su", {
-                            params: {
-                                wd: vm.searchVal
-                            }
-                        }, {
-                            jsonp: "cb"
-                        }
-                    )
-                    .then(
-                        function(res) {
-                            console.log("success");
-                        },
-                        function() {}
-                    );
+                        vm.myData = res.s;
+                    },
+                });
             },
             downSelect() {
                 if (!this.myData.length || !this.showList) {
