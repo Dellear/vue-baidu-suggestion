@@ -13,13 +13,13 @@ webpackJsonp([1],[
 /* styles */
 __webpack_require__(7)
 
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(12)(
   /* script */
   __webpack_require__(5),
   /* template */
-  __webpack_require__(12),
+  __webpack_require__(13),
   /* scopeId */
-  "data-v-6328b370",
+  "data-v-2a154654",
   /* cssModules */
   null
 )
@@ -35,6 +35,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -58,9 +61,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var vm = this;
             vm.showList = true;
             vm.selected = -1;
-            window.baidu = {
-                sug: function sug(data) {
-                    var arr = data.s;
+
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
+                dataType: "jsonp",
+                async: true,
+                url: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+                data: {
+                    wd: vm.searchVal
+                },
+                jsonp: "cb",
+                success: function success(res) {
+                    var arr = res.s;
                     arr.forEach(function (val, i) {
                         if (val.indexOf(vm.searchVal) > -1) {
                             arr[i] = {
@@ -75,19 +86,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         }
                     });
 
-                    vm.myData = data.s;
+                    vm.myData = res.s;
                 }
-            };
-
-            vm.$http.jsonp("http://suggestion.baidu.com/su", {
-                params: {
-                    wd: vm.searchVal
-                }
-            }, {
-                jsonp: "cb"
-            }).then(function (res) {
-                console.log("success");
-            }, function () {});
+            });
         },
         downSelect: function downSelect() {
             if (!this.myData.length || !this.showList) {
@@ -167,7 +168,8 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
 /* 9 */,
 /* 10 */,
 /* 11 */,
-/* 12 */
+/* 12 */,
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -269,8 +271,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: []}
 
 /***/ }),
-/* 13 */,
-/* 14 */
+/* 14 */,
+/* 15 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
